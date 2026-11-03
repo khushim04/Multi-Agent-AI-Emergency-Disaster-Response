@@ -1,0 +1,7 @@
+streamlit>=1.36
+requests>=2.32
+pandas>=2.2
+feedparser>=6.0
+python-dotenv>=1.0
+langgraph>=0.2
+typing-extensions>=4.12
