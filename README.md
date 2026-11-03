@@ -48,15 +48,8 @@ This prototype maps IMD warning colours into application labels: yellow -> MEDIU
 
 The code attempts the documented districtnowcast endpoint. If access returns 401/403 or an error, the app clearly records that IMD access is unavailable. Obtain credentials/access from the official IMD portal and set `IMD_API_TOKEN` in `.env` only if the API's documented authentication scheme matches Bearer tokens. If IMD issues a different scheme, update `services/imd_service.py` accordingly.
 
-## 5. Add verified shelters
 
-Populate `data/verified_shelters.csv` only from official district/state disaster-management authority records. Required columns:
-
-`shelter_name,state,district,address,latitude,longitude,hazard_types,source_url,verification_status,verification_date`
-
-Use `verification_status=verified` only after checking the official source and operational status. `hazard_types` can contain values such as `flood`, `cyclone`, `all`. The app calculates straight-line distance from the selected city coordinates and provides Google Maps driving directions. Straight-line distance is not road distance.
-
-## 6. Add verified state/district contacts
+## 5. Add verified state/district contacts
 
 Populate `data/emergency_contacts.csv` only after checking the official state/district government website:
 
@@ -64,7 +57,7 @@ Populate `data/emergency_contacts.csv` only after checking the official state/di
 
 The national 112 emergency number is included by default. Unverified state/district numbers are not fabricated.
 
-## 7. Known limitations / production hardening
+## 6. Known limitations / production hardening
 
 1. SACHET RSS matching in this starter version filters by city/state text and hazard keywords. It is not full CAP polygon intersection. Production should parse CAP XML and spatially intersect alert polygons with city coordinates.
 2. IMD endpoint availability/authentication can change; verify endpoint schema and credentials with the official API portal.
@@ -74,7 +67,7 @@ The national 112 emergency number is included by default. Unverified state/distr
 6. Use a state/district directory or authoritative government data to validate ambiguous city names and resolve district names correctly.
 7. Add API caching, retries/backoff, monitoring, tests, and source freshness checks before production.
 
-## 8. Official criteria reference links
+## 7. Official criteria reference links
 
 - IMD API reference and nowcast category documentation: https://api.imd.gov.in/public/api_reference.html
 - IMD definition/criteria poster: https://mausam.imd.gov.in/backend/assets/aiwfb_pdf/d7645ee338ad6a82de00e7ab953d376d.pdf
